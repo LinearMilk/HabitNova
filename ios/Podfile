@@ -1,0 +1,29 @@
+platform :ios, '12.0'
+
+ENV['COCOAPODS_DISABLE_STATS'] = 'true'
+
+project 'Runner', {
+  'Debug' => :debug,
+  'Profile' => :release,
+  'Release' => :release,
+}
+
+# Correct path to the root of your Flutter SDK
+flutter_application_path = '/Users/witold/development'
+
+
+
+# This line is correct and should stay as is
+load File.join(flutter_application_path, 'flutter/packages/flutter_tools/bin/podhelper.rb')
+
+target 'Runner' do
+  use_frameworks!
+
+  # This command uses the correct flutter_application_path
+  flutter_install_all_ios_pods(flutter_application_path)
+
+  # Firebase Pods
+  pod 'Firebase/Core'
+  pod 'Firebase/Auth'
+  pod 'Firebase/Firestore'
+end
